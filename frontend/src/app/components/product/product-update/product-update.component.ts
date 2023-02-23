@@ -17,14 +17,16 @@ export class ProductUpdateComponent implements OnInit {
   
 
   constructor(
-    private ProductService: ProductService, 
+    private productService: ProductService, 
     private router: Router, 
     private route: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    this.ProductService.readById
+    this.productService.readById(id).subscribe(product => {
+      this.product = product
+    });
   }
 
   updateProduct(): void {
